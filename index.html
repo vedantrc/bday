@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday <3 </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      padding: 50px 30px;
+      box-shadow: 0 0 18px rgba(255, 0, 255, 0.3);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 1.9em;
+      margin-bottom: 25px;
+      text-shadow: 0 0 8px #ff00cc99;
+    }
+
+    .button {
+      padding: 14px 38px;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #ff4dd2, #7a00ff);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 12px #ff00cc80, 0 0 24px #7a00ff40 inset;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #7a00ff, #ff4dd2);
+      transform: scale(1.07);
+      box-shadow: 0 0 25px #ff00ff88, 0 0 18px #6600ff66 inset;
+    }
+
+    #countdown {
+      font-size: 1.8em;
+      margin-top: 30px;
+      min-height: 50px;
+      white-space: pre-wrap;
+      color: #ff99ff;
+      text-shadow: 0 0 6px #ff00ccaa;
+    }
+
+    #main-message {
+      font-size: 1.1em;
+      margin-top: 35px;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 1s ease;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 0 14px rgba(255, 0, 255, 0.2);
+    }
+
+    .big {
+      font-size: 1.8em;
+      color: #ffccff;
+      font-weight: bold;
+      text-shadow: 0 0 8px #ff99ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>HEYYYYYYYYYYYYYYYYYYYYYYY <3!</h1>
+    <button class="button" onclick="startReveal()">✨ Begin the Magic ✨</button>
+    <div id="countdown"></div>
+    <div id="main-message"></div>
+  </div>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const message = document.getElementById("main-message");
+
+    const lines = [
+      "✨ A SURPRISE AWAITS...",
+      "🖤 LOADING LOVE...",
+      "🌌 SETTING THE STARTS AND THE CHAND...",
+      "🎉 HERE GOES THE BDAYYYYY MAGIC!"
+    ];
+
+    let currentLine = 0;
+
+    function startReveal() {
+      document.querySelector(".button").disabled = true;
+      countdown.textContent = "";
+      typeLine();
+    }
+
+    function typeLine() {
+      let line = lines[currentLine];
+      let charIndex = 0;
+      countdown.textContent = "";
+
+      const typer = setInterval(() => {
+        countdown.textContent += line.charAt(charIndex);
+        charIndex++;
+        if (charIndex >= line.length) {
+          clearInterval(typer);
+          currentLine++;
+          if (currentLine < lines.length) {
+            setTimeout(typeLine, 1000);
+          } else {
+            setTimeout(showBigMessage, 1200);
+          }
+        }
+      }, 60);
+    }
+
+    function showBigMessage() {
+      message.innerHTML = `
+        <span class="big">🎂 Heyyyyyyyyyy <3 🎂</span><br><br>
+        MERI CHAND JAISI SUNDAR BEHENA<br><br>
+        <b>It's your 17th Birthday and I'm beyond proud of you!❤️</b><br><br>
+        Here's to laughter, dreams coming true, and all the love this world can offer.<br>
+        <span style="color:#ffd1ff; font-size:1.2em;">Happy 17th!</span><br><br>
+        <i>With endless love, from your GirliePoPs, Vedant 💖</i>
+      `;
+      message.style.opacity = 1;
+      countdown.style.display = "none";
+    }
+  </script>
+</body>
+</html>
